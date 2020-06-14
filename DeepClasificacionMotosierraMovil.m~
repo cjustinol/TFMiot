@@ -93,16 +93,15 @@ for i=1:200
     Ndetecciones = Ndetecciones + 1;
   end
 
- if mod(Ndetecciones,50)==0 && (Ndetecciones > 0) && Ndetecciones > NdeteccionesPrevias 
+ if mod(Ndetecciones,25)==0 && (Ndetecciones > 0) && Ndetecciones > NdeteccionesPrevias 
     NdeteccionesPrevias = Ndetecciones;
     % Escribir las detecciones acumuladas en Field2 y manejar Alarma en
     % ThingSpeak
-    display("Sonido de motosierra detectado")
     AlarmaThingSpeak = 1;
-    dataField1 = AlarmaThingSpeak;
-    dataField2 = Ndetecciones;
+    dataField3 = AlarmaThingSpeak;
+    dataField4 = Ndetecciones;
     
-    respuesta = thingSpeakWrite(ChannelIDParking,'Fields',[1,2],'Values',{dataField1,dataField2},'Writekey',writeAPIKeyParking);
+    respuesta = thingSpeakWrite(ChannelIDParking,'Fields',[3,4],'Values',{dataField3,dataField4},'Writekey',writeAPIKeyParking);
     %respuesta = thingSpeakWrite(,dataField3,'Fields',3,'Writekey',writeAPIKeyParking);
     %pause(15); %Esperar a consolidar la escritura, hay que hacer pausas de 2 segundos en Drive hasta un total de 15 segundos
     %pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); % > 16 segundos  
@@ -110,10 +109,10 @@ for i=1:200
     %respuesta = thingSpeakWrite(ChannelIDParking,dataField4,'Fields',4,'Writekey',writeAPIKeyParking);
     %pause(15); %Esperar a consolidar la escritura
     pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); % > 16 segundos  
-    
+
     AlarmaThingSpeak = 0;
-    dataField1 = AlarmaThingSpeak;
-    respuesta = thingSpeakWrite(ChannelIDParking,dataField1,'Fields',1,'Writekey',writeAPIKeyParking);
+    dataField3 = AlarmaThingSpeak;
+    respuesta = thingSpeakWrite(ChannelIDParking,dataField3,'Fields',3,'Writekey',writeAPIKeyParking);
     %pause(15); %Esperar a consolidar la escritura
     pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2); pause(2);% > 16 segundos  
 
